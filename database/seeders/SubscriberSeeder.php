@@ -16,7 +16,6 @@ class SubscriberSeeder extends Seeder
     public function run()
     {
         Subscriber::truncate();
-        $date = date('Y-m-d H:i:s');
         $csvFile = fopen(base_path("database/data/subscribers.csv"), "r");
         $firstRow = true;
         while (($data = fgetcsv($csvFile,1000, ",")) !== FALSE) {
