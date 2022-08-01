@@ -20,7 +20,7 @@ class SubscriberController extends Controller
 
     public function index(){
 
-        return view('welcome');
+        return view('subscriber.index');
     }
 
     public function getSubscriber(Request $request){

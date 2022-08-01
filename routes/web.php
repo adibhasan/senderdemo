@@ -15,9 +15,5 @@ use App\Http\Controllers\SubscriberController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/users/{id}',[UserController::class, 'index']);
-Route::get('/subscribers',[SubscriberController::class, 'getSubscriber']);
+Route::get('/',[SubscriberController::class, 'index']);
+Route::post('/subscribers',[SubscriberController::class, 'getSubscriber']);
