@@ -44,8 +44,18 @@ jQuery(function ($) {
     
                 });
                 request.done(function (response) {
-                    let data = response.data.data;
-                    App.loadTemplate("list-of-subscriber","tmpl-subscribers",data);
+                    let subscribers = response.data;
+                    let rows = subscribers.data;
+                    let paging = {
+                        'totalSubscriber': subscribers.total,
+                        'prev': subscribers.prev_page_url,
+                        'currentPage': subscribers.current_page,
+                        'lastPage':  subscribers.last_page,
+                        'next': subscribers.next_page_url
+                    };
+                    App.loadTemplate("top-paging-wrapper","tmpl-subscriber-paging",paging);
+                    App.loadTemplate("list-of-subscriber","tmpl-subscribers",rows);
+                    App.loadTemplate("bottom-paging-wrapper","tmpl-subscriber-paging",paging);
                 });
                 request.fail(function (jqXHR, textStatus) {
                     /*if (jqXHR.status === 403 && textStatus === "error") {
@@ -71,6 +81,20 @@ jQuery(function ($) {
                 });
 
                 App.Post();
+
+                $("#birth-filter-form").on('submit',function(e){
+                    e.preventDefault();
+                    App.Post(1);
+                });
+                
+                $(document.body).on("click",".paging-page",function(){
+                    let pageUrl = $(this).data('page');
+                    let page = 1;
+                    if(pageUrl != ""){
+                        page = pageUrl.split("subscribers?page=")[1];
+                    }
+                    App.Post(page);
+                });
             }
         };
 
