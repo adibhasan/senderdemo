@@ -40,7 +40,7 @@
 
 ## Test Images
 1. [default-page-without-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/default-page-without-filter-first-load-without-redis.png) 
-2. [default-page-without-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/default-page-without-filter-first-load-with-redis.png.png) 
+2. [default-page-without-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/default-page-without-filter-first-load-with-redis.png) 
 3. [page-with-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/page-with-filter-first-load-without-redis.png) 
 4. [page-with-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/page-with-filter-first-load-with-redis.png) 
 
