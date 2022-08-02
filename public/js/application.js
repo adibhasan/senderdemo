@@ -29,7 +29,7 @@ jQuery(function ($) {
             RemoveMessage: function (elementId) {
                 setTimeout(function () {
                     $("#" + elementId).html('');
-                }, 5000);
+                }, 20000);
             },
             Post: function (page="") {
                 let data = {
@@ -37,6 +37,7 @@ jQuery(function ($) {
                     'month':$("#month").val(),
                     'page': page
                 };
+                let paging = {};
                 var request = $.ajax({
                     url: '/subscribers',
                     type: 'POST',
@@ -46,7 +47,7 @@ jQuery(function ($) {
                 request.done(function (response) {
                     let subscribers = response.data;
                     let rows = subscribers.data;
-                    let paging = {
+                    paging = {
                         'totalSubscriber': subscribers.total,
                         'prev': subscribers.prev_page_url,
                         'currentPage': subscribers.current_page,
@@ -58,19 +59,29 @@ jQuery(function ($) {
                     App.loadTemplate("bottom-paging-wrapper","tmpl-subscriber-paging",paging);
                 });
                 request.fail(function (jqXHR, textStatus) {
-                    /*if (jqXHR.status === 403 && textStatus === "error") {
-                        location.reload();
-                    } else {
-                        Request[responseHandler].apply(this, [{
-                            "element": el,
-                            "response": jqXHR.responseJSON,
-                            "success": false,
-                            "message": "Action has been failed to perform"
-                        }]);
-                    }*/
+                    if(jqXHR.status === 422 || jqXHR.status === 400){
+                        let errors = App.ObjectToArray(jqXHR.responseJSON.errors);
+                        let errorResponse={
+                           'message': jqXHR.responseJSON.message,
+                           'errors': errors
+                        };
+                        paging = {
+                            'totalSubscriber': 0,
+                            'prev': null,
+                            'currentPage': "",
+                            'lastPage':  null,
+                            'next': null
+                        };
+                        App.loadTemplate("error-wrapper","tmpl-errors",errorResponse);
+                        App.loadTemplate("top-paging-wrapper","tmpl-subscriber-paging",paging);
+                        App.loadTemplate("list-of-subscriber","tmpl-nodata",null);
+                        App.loadTemplate("bottom-paging-wrapper","tmpl-subscriber-paging",paging);
+                    }else{
+                        alert("Something went wrong. Please reload the page and try again.");
+                    }
                 });
                 request.always(function () {
-                    Ajax.ProcessStatus(false);
+                    App.RemoveMessage('error-wrapper');
                 });
             },
             CommonEvents: function () {
@@ -86,7 +97,10 @@ jQuery(function ($) {
                     e.preventDefault();
                     App.Post(1);
                 });
-                
+                $("#reset-birth-filter-form").on("click",function(){
+                    $("#birth-filter-form")[0].reset();
+                    App.Post(1);
+                });
                 $(document.body).on("click",".paging-page",function(){
                     let pageUrl = $(this).data('page');
                     let page = 1;
@@ -95,6 +109,7 @@ jQuery(function ($) {
                     }
                     App.Post(page);
                 });
+
             }
         };
 

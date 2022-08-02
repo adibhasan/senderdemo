@@ -7,6 +7,7 @@
         <div class="search-form">
             <form class="form-inline" id="birth-filter-form" method="POST" action="/subscribers" autocomplete="off">
                 @csrf
+                <div id="error-wrapper"></div>
                 <div class="form-group">
                     <div>
                         <label for="year">Birth Year</label>
@@ -29,6 +30,14 @@
                     </div>
                     <div>
                         <button type="submit" class="btn btn-warning">Filter</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label for="month">&nbsp;</label>
+                    </div>
+                    <div>
+                        <button type="button" id="reset-birth-filter-form" class="btn btn-default">Reset</button>
                     </div>
                 </div>
             </form>
@@ -72,12 +81,30 @@
         </tr>
     {% } %}
 </script>
+<script type="text/x-tmpl" id="tmpl-nodata">
+    <tr>
+        <td colspan="7">
+            <h3 class="text-center">There is no data to show.</h3>
+        </td>
+    </tr>
+</script>
 <script type="text/x-tmpl" id="tmpl-subscriber-paging">
     <div class="paging-wrapper text-right">
         <span class="inline-block mr-30">{%=o.totalSubscriber%} people in the list</span>
         <span class="inline-block"><button class="btn btn-xm paging-page" data-page="{%=o.prev%}" {% if (o.prev == null) { %} disabled {% } %} ><i class="glyphicon glyphicon-chevron-left"></i></button></span>
         <span class="inline-block">Showing {%=o.currentPage %} of {%=o.lastPage %} Pages</span>
         <span class="inline-block"><button class="btn btn-xm paging-page" data-page="{%=o.next%}" {% if (o.next == null) { %} disabled {% } %} ><i class="glyphicon glyphicon-chevron-right"></i></button></span>
+    </div>
+</script>
+<script type="text/x-tmpl" id="tmpl-errors">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="error-message">{%=o.message%}</div>
+        <ul class="error-message-list">
+            {% for (var i=0; i<o.errors.length; i++) { %}
+                <li>{%=o.errors[i] %}</li>
+            {% } %}
+        </ul>
     </div>
 </script>
 @stop

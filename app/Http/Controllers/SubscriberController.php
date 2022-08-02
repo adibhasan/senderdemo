@@ -24,6 +24,10 @@ class SubscriberController extends Controller
     }
 
     public function getSubscriber(Request $request){
+        $request->validate([
+            'year' => 'nullable|sometimes|digits:4|integer|min:1000|max:'.(date('Y')+1),
+            'month' => 'nullable|sometimes|integer|min:1|max:12'
+        ]);
 
         $this->year = $request->input('year')??0;
         $this->month = $request->input('month')??0;

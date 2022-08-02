@@ -21,8 +21,7 @@
         </div>
         <script src="{{ asset ('/js/bootstrap.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/js/tmpl.min.js') }}"></script>
-        <script src="{{ asset('/js/ajax.js') }}"></script>
-        <script src="{{ asset('/js/request.js') }}"></script>
         <script src="{{ asset('/js/application.js') }}"></script>
+        
     </body>
 </html>

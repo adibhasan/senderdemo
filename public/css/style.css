@@ -39,3 +39,8 @@ body{
 #list-of-subscriber tr td{
     font-size: 12px;
 }
+.error-message-list{
+    margin: 15px 0px 0px;
+    padding: 0px 0px 0px 30px;
+    font-size: 12px;
+}
