@@ -39,8 +39,8 @@
 4. Reload: [Localhost](http://127.0.0.1:8000/)
 
 ## Test Images
-1. [default-page-without-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/default-page-without-filter-first-load-without-redis.png) 
-2. [default-page-without-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/default-page-without-filter-first-load-with-redis.png) 
-3. [page-with-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/page-with-filter-first-load-without-redis.png) 
-4. [page-with-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/page-with-filter-first-load-with-redis.png) 
+1. [default-page-without-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/d1.png) 
+2. [default-page-without-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/d2.png) 
+3. [page-with-filter-first-load-without-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/d3.png) 
+4. [page-with-filter-first-load-with-redis](https://github.com/adibhasan/senderdemo/blob/master/public/images/d4.png) 
 
