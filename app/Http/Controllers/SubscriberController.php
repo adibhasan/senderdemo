@@ -46,7 +46,6 @@ class SubscriberController extends Controller
             'status' => 200,
             'message' => $message,
             'data' => $this->pagingData(),
-            'sortingInfo'=>$this->sortData(),
             'searchInfo'=> $this->searchKeys()
         ]);
 
@@ -67,13 +66,6 @@ class SubscriberController extends Controller
         
     }
 
-    private function sortData(){
-        return [
-            'sortBy'=> 'id',
-            'sortOrder'=>'ASC'
-        ];
-    }
-    
     private function searchKeys(){
         $key= [
             $this->year,$this->month

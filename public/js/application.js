@@ -54,8 +54,13 @@ jQuery(function ($) {
                         'lastPage':  subscribers.last_page,
                         'next': subscribers.next_page_url
                     };
+                    
                     App.loadTemplate("top-paging-wrapper","tmpl-subscriber-paging",paging);
-                    App.loadTemplate("list-of-subscriber","tmpl-subscribers",rows);
+                    if(rows.length){
+                        App.loadTemplate("list-of-subscriber","tmpl-subscribers",rows);
+                    }else{
+                        App.loadTemplate("list-of-subscriber","tmpl-nodata",null); 
+                    }
                     App.loadTemplate("bottom-paging-wrapper","tmpl-subscriber-paging",paging);
                 });
                 request.fail(function (jqXHR, textStatus) {
